@@ -470,7 +470,7 @@ sd(bank_churn_clean$CreditScore)
 
 ggplot(bank_churn_clean, aes(x = CreditScore)) +
   geom_histogram(binwidth = 25, fill = &quot;steelblue&quot;, color = &quot;white&quot;) +
-  labs(title = &quot;Distribution of Customer Credit Score&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Credit Score&quot;, y = &quot;Count&quot;) +
+  labs(title = &quot;Distribution of Credit Score&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Credit Score&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis here)</p>
 <p><strong>Age</strong></p>
@@ -479,7 +479,7 @@ sd(bank_churn_clean$Age)
 
 ggplot(bank_churn_clean, aes(x = Age)) +
   geom_histogram(binwidth = 5, fill = &quot;#5F9EA0&quot;, color = &quot;white&quot;) +
-  labs(title = &quot;Distribution of Customer Age&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Age&quot;, y = &quot;Count&quot;) +
+  labs(title = &quot;Distribution of Age&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Age&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis here)</p>
 <p><strong>Tenure</strong></p>
@@ -487,10 +487,18 @@ ggplot(bank_churn_clean, aes(x = Age)) +
 sd(bank_churn_clean$Tenure)
 
 ggplot(bank_churn_clean, aes(x = Tenure)) +
-  geom_histogram(binwidth = 5, fill = &quot;#48D&quot;, color = &quot;white&quot;) +
-  labs(title = &quot;Distribution of Tenure&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Tenure&quot;, y = &quot;Count&quot;) +
+  geom_histogram(binwidth = 1, fill = &quot;#B0E0E6&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Tenure&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Tenure&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis here)</p>
+<p><strong>Number of Products</strong></p>
+<pre class="r"><code>summary(bank_churn_clean$NumOfProducts)
+sd(bank_churn_clean$NumOfProducts)
+
+ggplot(bank_churn_clean, aes(x = NumOfProducts)) +
+  geom_histogram(binwidth = 1, fill = &quot;#4682B4&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Number of Products&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Number of Products&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
 <p><strong>Balance</strong></p>
 <pre class="r"><code>library(scales)
 
@@ -499,7 +507,7 @@ sd(bank_churn_clean$Balance)
 
 ggplot(bank_churn_clean, aes(x = Balance)) +
   geom_histogram(binwidth = 10000, fill = &quot;#008080&quot;, color = &quot;white&quot;) +
-  labs(title = &quot;Distribution of Customer Account Balance (in euros)&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Balance (€)&quot;, y = &quot;Count&quot;) +
+  labs(title = &quot;Distribution of Account Balance (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Balance (€)&quot;, y = &quot;Count&quot;) +
   scale_x_continuous(labels = comma) +
   theme_minimal()</code></pre>
 <p>(analysis)</p>
@@ -510,9 +518,49 @@ summary(bank_churn_clean$EstimatedSalary)
 sd(bank_churn_clean$EstimatedSalary)
 
 ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
-  geom_histogram(binwidth = 10000, fill = &quot;lightblue&quot;, color = &quot;white&quot;) +
-  labs(title = &quot;Distribution of Customers&#39; Estimated Salaries (in euros)&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Estimated Salary (€)&quot;, y = &quot;Count&quot;) +
+  geom_histogram(binwidth = 7500, fill = &quot;lightblue&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Estimated Salary (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Estimated Salary (€)&quot;, y = &quot;Count&quot;) +
   scale_x_continuous(labels = comma) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Geography</strong></p>
+<pre class="r"><code>table(bank_churn_clean$Geography)
+
+ggplot(bank_churn_clean, aes(x = Geography)) +
+  geom_bar(fill = &quot;steelblue&quot;) +
+  labs(title = &quot;Distribution of Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Country of Residence&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Gender</strong></p>
+<pre class="r"><code>table(bank_churn_clean$Gender)
+
+ggplot(bank_churn_clean, aes(x = Gender)) +
+  geom_bar(fill = &quot;#5F9EA0&quot;) +
+  labs(title = &quot;Number of Customers by Gender&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Gender&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Credit Card Ownership</strong></p>
+<pre class="r"><code>table(bank_churn_clean$HasCrCard)
+
+ggplot(bank_churn_clean, aes(x = HasCrCard)) +
+  geom_bar(fill = &quot;#B0E0E6&quot;) +
+  labs(title = &quot;Credit Card Ownership&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Owns a Credit Card&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Active Bank Membership Status</strong></p>
+<pre class="r"><code>table(bank_churn_clean$IsActiveMember)
+
+ggplot(bank_churn_clean, aes(x = IsActiveMember)) +
+  geom_bar(fill = &quot;#4682B4&quot;) +
+  labs(title = &quot;Active Bank Membership Status&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Is Active Member of Bank&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Customer Churn</strong></p>
+<pre class="r"><code>table(bank_churn_clean$Exited)
+
+ggplot(bank_churn_clean, aes(x = Exited)) +
+  geom_bar(fill = &quot;#008080&quot;) +
+  labs(title = &quot;Customer Churn&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Exited&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis)</p>
 

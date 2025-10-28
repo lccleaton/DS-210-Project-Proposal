@@ -86,7 +86,7 @@ sd(bank_churn_clean$CreditScore)
 
 ggplot(bank_churn_clean, aes(x = CreditScore)) +
   geom_histogram(binwidth = 25, fill = "steelblue", color = "white") +
-  labs(title = "Distribution of Customer Credit Score", subtitle = "For customers at a European bank", x = "Credit Score", y = "Count") +
+  labs(title = "Distribution of Credit Score", subtitle = "For Customers of a European Bank", x = "Credit Score", y = "Count") +
   theme_minimal()
 ```
 (analysis here)
@@ -100,7 +100,7 @@ sd(bank_churn_clean$Age)
 
 ggplot(bank_churn_clean, aes(x = Age)) +
   geom_histogram(binwidth = 5, fill = "#5F9EA0", color = "white") +
-  labs(title = "Distribution of Customer Age", subtitle = "For customers at a European bank", x = "Age", y = "Count") +
+  labs(title = "Distribution of Age", subtitle = "For Customers of a European Bank", x = "Age", y = "Count") +
   theme_minimal()
 ```
 (analysis here)
@@ -112,11 +112,23 @@ summary(bank_churn_clean$Tenure)
 sd(bank_churn_clean$Tenure)
 
 ggplot(bank_churn_clean, aes(x = Tenure)) +
-  geom_histogram(binwidth = 5, fill = "#48D", color = "white") +
-  labs(title = "Distribution of Tenure", subtitle = "For customers at a European bank", x = "Tenure", y = "Count") +
+  geom_histogram(binwidth = 1, fill = "#B0E0E6", color = "white") +
+  labs(title = "Distribution of Tenure", subtitle = "For Customers of a European Bank", x = "Tenure", y = "Count") +
   theme_minimal()
 ```
 (analysis here)
+
+**Number of Products**
+``` {r numproducts_summary_visualization, eval = FALSE}
+summary(bank_churn_clean$NumOfProducts)
+sd(bank_churn_clean$NumOfProducts)
+
+ggplot(bank_churn_clean, aes(x = NumOfProducts)) +
+  geom_histogram(binwidth = 1, fill = "#4682B4", color = "white") +
+  labs(title = "Distribution of Number of Products", subtitle = "For Customers of a European Bank", x = "Number of Products", y = "Count") +
+  theme_minimal()
+```
+
 
 **Balance**
 
@@ -128,7 +140,7 @@ sd(bank_churn_clean$Balance)
 
 ggplot(bank_churn_clean, aes(x = Balance)) +
   geom_histogram(binwidth = 10000, fill = "#008080", color = "white") +
-  labs(title = "Distribution of Customer Account Balance (in euros)", subtitle = "For customers at a European bank", x = "Balance (€)", y = "Count") +
+  labs(title = "Distribution of Account Balance (in euros)", subtitle = "For Customers of a European Bank", x = "Balance (€)", y = "Count") +
   scale_x_continuous(labels = comma) +
   theme_minimal()
 ```
@@ -143,10 +155,69 @@ summary(bank_churn_clean$EstimatedSalary)
 sd(bank_churn_clean$EstimatedSalary)
 
 ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
-  geom_histogram(binwidth = 10000, fill = "lightblue", color = "white") +
-  labs(title = "Distribution of Customers' Estimated Salaries (in euros)", subtitle = "For customers at a European bank", x = "Estimated Salary (€)", y = "Count") +
+  geom_histogram(binwidth = 7500, fill = "lightblue", color = "white") +
+  labs(title = "Distribution of Estimated Salary (in euros)", subtitle = "For Customers of a European Bank", x = "Estimated Salary (€)", y = "Count") +
   scale_x_continuous(labels = comma) +
   theme_minimal()
 ```
 (analysis)
 
+**Geography**
+
+```{r geography_summary_visualization, eval = FALSE}
+table(bank_churn_clean$Geography)
+
+ggplot(bank_churn_clean, aes(x = Geography)) +
+  geom_bar(fill = "steelblue") +
+  labs(title = "Distribution of Country of Residence", subtitle = "For Customers of a European Bank", x = "Country of Residence", y = "Count") +
+  theme_minimal()
+```
+(analysis)
+
+**Gender**
+
+```{r gender_summary_visualization, eval = FALSE}
+table(bank_churn_clean$Gender)
+
+ggplot(bank_churn_clean, aes(x = Gender)) +
+  geom_bar(fill = "#5F9EA0") +
+  labs(title = "Number of Customers by Gender", subtitle = "For Customers of a European Bank", x = "Gender", y = "Count") +
+  theme_minimal()
+```
+(analysis)
+
+**Credit Card Ownership**
+```{r creditcard_summary_visualization, eval = FALSE}
+
+table(bank_churn_clean$HasCrCard)
+
+ggplot(bank_churn_clean, aes(x = HasCrCard)) +
+  geom_bar(fill = "#B0E0E6") +
+  labs(title = "Credit Card Ownership", subtitle = "For Customers of a European Bank", x = "Owns a Credit Card", y = "Count") +
+  theme_minimal()
+```
+(analysis)
+
+**Active Bank Membership Status**
+```{r activemember_summary_visualization, eval = FALSE}
+
+table(bank_churn_clean$IsActiveMember)
+
+ggplot(bank_churn_clean, aes(x = IsActiveMember)) +
+  geom_bar(fill = "#4682B4") +
+  labs(title = "Active Bank Membership Status", subtitle = "For Customers of a European Bank", x = "Is Active Member of Bank", y = "Count") +
+  theme_minimal()
+```
+(analysis)
+
+**Customer Churn**
+```{r exited_summary_visualization, eval = FALSE}
+
+table(bank_churn_clean$Exited)
+
+ggplot(bank_churn_clean, aes(x = Exited)) +
+  geom_bar(fill = "#008080") +
+  labs(title = "Customer Churn", subtitle = "For Customers of a European Bank", x = "Exited", y = "Count") +
+  theme_minimal()
+```
+(analysis)
