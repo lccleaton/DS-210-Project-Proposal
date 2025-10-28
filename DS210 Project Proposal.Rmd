@@ -1,0 +1,16 @@
+---
+title: "DS210 Project Proposal"
+author: "Laina Cleaton"
+date: "2025-10-28"
+output: html_document
+---
+
+```{r setup_tidyverse, eval=FALSE}
+library(tidyverse)
+```
+
+```{r read_file, eval = FALSE}
+bank_churn_data <- read_csv("Bank_Churn.csv")
+View(bank_churn_data)
+```
+
