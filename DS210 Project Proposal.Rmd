@@ -129,8 +129,7 @@ ggplot(bank_churn_clean, aes(x = NumOfProducts)) +
   theme_minimal()
 ```
 
-
-**Balance**
+**Account Balance**
 
 ```{r balance_summary_visualization, eval = FALSE}
 library(scales)
@@ -162,7 +161,7 @@ ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
 ```
 (analysis)
 
-**Geography**
+**Country of Residence**
 
 ```{r geography_summary_visualization, eval = FALSE}
 table(bank_churn_clean$Geography)
@@ -221,3 +220,72 @@ ggplot(bank_churn_clean, aes(x = Exited)) +
   theme_minimal()
 ```
 (analysis)
+
+***Step 5: Multivariable Comparisons and Visualizations***
+
+**Churn Status by Credit Score**
+```{r creditscore_churn_visualization, eval = FALSE}
+ggplot(bank_churn_clean, aes(x = as.numeric(CreditScore), y = factor(Exited))) +
+  geom_violin(fill = "#B0E0E6", alpha = 0.6) +
+  geom_boxplot(fill = "#5F9EA0") +
+  labs(title = "Churn Status by Credit Score", subtitle = "For Customers of a European Bank", x = "Credit Score", y = "Exited") +
+  theme_minimal()
+```
+(analysis)
+
+**Churn Status by Age**
+```{r age_churn_visualization, eval = FALSE}
+ggplot(bank_churn_clean, aes(x = as.numeric(Age), y = factor(Exited))) +
+  geom_violin(fill = "lightblue", alpha = 0.6) +
+  geom_boxplot(fill = "steelblue") +
+  labs(title = "Churn Status by Age", subtitle = "For Customers of a European Bank", x = "Age", y = "Exited") +
+  theme_minimal()
+```
+**Churn Status by Tenure**
+```{r tenure_churn_visualization, eval = FALSE}
+ggplot(bank_churn_clean, aes(x = as.numeric(Tenure), y = factor(Exited))) +
+  geom_violin(fill = "#B0E0E6", alpha = 0.6) +
+  geom_boxplot(fill = "#008080") +
+  labs(title = "Churn Status by Tenure", subtitle = "For Customers of a European Bank", x = "Tenure", y = "Exited") +
+  theme_minimal()
+```
+(analysis)
+
+**Churn Status by Number of Products**
+```{r numproducts_churn_visualization, eval = FALSE}
+ggplot(bank_churn_clean, aes(x = as.numeric(NumOfProducts), y = factor(Exited))) +
+  geom_violin(fill = "lightblue", alpha = 0.6) +
+  geom_boxplot(fill = "#4682B4") +
+  labs(title = "Churn Status by Number of Products", subtitle = "For Customers of a European Bank", x = "Number of Products", y = "Exited") +
+  theme_minimal()
+```
+
+**Churn Status by Account Balance**
+```{r balance_churn_visualization, eval = FALSE}
+ggplot(bank_churn_clean, aes(x = as.numeric(Balance), y = factor(Exited))) +
+  geom_violin(fill = "lightblue", alpha = 0.6) +
+  geom_boxplot(fill = "#4682B4") +
+  labs(title = "Churn Status by Balance (in euros)", subtitle = "For Customers of a European Bank", x = "Balance (€)", y = "Exited") +
+  theme_minimal()
+```
+(analysis)
+
+**Churn Status by Estimated Salary**
+```{r estsalary_churn_visualization, eval = FALSE}
+ggplot(bank_churn_clean, aes(x = as.numeric(EstimatedSalary), y = factor(Exited))) +
+  geom_violin(fill = "lightblue", alpha = 0.6) +
+  geom_boxplot(fill = "#4682B4") +
+  labs(title = "Churn Status by Estimated Salary (in euros)", subtitle = "For Customers of a European Bank", x = "Estimated Salary (€)", y = "Exited") +
+  theme_minimal()
+```
+
+**Churn Status by Country of Residence**
+```{r geography_churn_visualization, eval = FALSE}
+library(scales)
+ggplot(bank_churn_clean, aes(x = Geography, fill = Exited)) +
+  geom_bar(position = "fill") +
+  labs(title = "Churn Status by Country of Residence", subtitle = "For Customers of a European Bank", x = "Country", y = "Proportion") +
+  scale_y_continuous(labels = percent) +
+  theme_minimal()
+```
+
