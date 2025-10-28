@@ -13,7 +13,7 @@ Customer retention is a critical concern in the banking industry, where competit
 
 During my internship at Bank of America, I supported the Call Insights function in the Retail Transformation team, focusing on data analytics to enhance the client experience. I enjoyed identifying trends in customer call and complaint data to improve bank service efficiency. This project allows me to build on those skills by applying similar analytical techniques to a different dataset within the banking industry. 
 
-***Research Question: What factors are most strongly associated with whether or not a customer closes their account with a bank?***
+*Research Question: What factors are most strongly associated with whether or not a customer closes their account with a bank?*
 
 The purpose of this project is to explore the factors that influence customer churn, with the goal of identifying patterns and relationships between customer characteristics and their decision to close their account. The dataset used in this study, titled "*Bank Customer Churn*," is publicly available from [Maven Analytics' Data Playground](https://mavenanalytics.io/data-playground/bank-customer-churn?page=7&pageSize=5), which sourced the data from [Kaggle](https://www.kaggle.com/datasets/shubhammeshram579/bank-customer-churn-prediction/data). While the specific bank is not identified, the dataset represents customer information from an unnamed European bank and contains 10,000 observations. 
 
@@ -82,6 +82,7 @@ All variables contain complete information, so no further cleaning is required.
 
 ```{r creditscore_summary_visualization, eval = FALSE}
 summary(bank_churn_clean$CreditScore)
+sd(bank_churn_clean$CreditScore)
 
 ggplot(bank_churn_clean, aes(x = CreditScore)) +
   geom_histogram(binwidth = 25, fill = "steelblue", color = "white") +
@@ -89,4 +90,63 @@ ggplot(bank_churn_clean, aes(x = CreditScore)) +
   theme_minimal()
 ```
 (analysis here)
+
+
+**Age**
+
+```{r age_summary_visualization, eval = FALSE}
+summary(bank_churn_clean$Age)
+sd(bank_churn_clean$Age)
+
+ggplot(bank_churn_clean, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = "#5F9EA0", color = "white") +
+  labs(title = "Distribution of Customer Age", subtitle = "For customers at a European bank", x = "Age", y = "Count") +
+  theme_minimal()
+```
+(analysis here)
+
+**Tenure**
+
+```{r tenure_summary_visualization, eval = FALSE}
+summary(bank_churn_clean$Tenure)
+sd(bank_churn_clean$Tenure)
+
+ggplot(bank_churn_clean, aes(x = Tenure)) +
+  geom_histogram(binwidth = 5, fill = "#48D", color = "white") +
+  labs(title = "Distribution of Tenure", subtitle = "For customers at a European bank", x = "Tenure", y = "Count") +
+  theme_minimal()
+```
+(analysis here)
+
+**Balance**
+
+```{r balance_summary_visualization, eval = FALSE}
+library(scales)
+
+summary(bank_churn_clean$Balance)
+sd(bank_churn_clean$Balance)
+
+ggplot(bank_churn_clean, aes(x = Balance)) +
+  geom_histogram(binwidth = 10000, fill = "#008080", color = "white") +
+  labs(title = "Distribution of Customer Account Balance (in euros)", subtitle = "For customers at a European bank", x = "Balance (€)", y = "Count") +
+  scale_x_continuous(labels = comma) +
+  theme_minimal()
+```
+(analysis)
+
+**Estimated Salary**
+
+```{r estimatedsalary_summary_visualization, eval = FALSE}
+library(scales)
+
+summary(bank_churn_clean$EstimatedSalary)
+sd(bank_churn_clean$EstimatedSalary)
+
+ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
+  geom_histogram(binwidth = 10000, fill = "lightblue", color = "white") +
+  labs(title = "Distribution of Customers' Estimated Salaries (in euros)", subtitle = "For customers at a European bank", x = "Estimated Salary (€)", y = "Count") +
+  scale_x_continuous(labels = comma) +
+  theme_minimal()
+```
+(analysis)
 

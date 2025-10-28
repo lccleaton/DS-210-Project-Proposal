@@ -388,9 +388,8 @@ in customer call and complaint data to improve bank service efficiency.
 This project allows me to build on those skills by applying similar
 analytical techniques to a different dataset within the banking
 industry.</p>
-<p><strong><em>Research Question: What factors are most strongly
-associated with whether or not a customer closes their account with a
-bank?</em></strong></p>
+<p><em>Research Question: What factors are most strongly associated with
+whether or not a customer closes their account with a bank?</em></p>
 <p>The purpose of this project is to explore the factors that influence
 customer churn, with the goal of identifying patterns and relationships
 between customer characteristics and their decision to close their
@@ -467,12 +466,55 @@ required.</p>
 Visualizations</em></strong></p>
 <p><strong>Credit Score</strong></p>
 <pre class="r"><code>summary(bank_churn_clean$CreditScore)
+sd(bank_churn_clean$CreditScore)
 
 ggplot(bank_churn_clean, aes(x = CreditScore)) +
   geom_histogram(binwidth = 25, fill = &quot;steelblue&quot;, color = &quot;white&quot;) +
   labs(title = &quot;Distribution of Customer Credit Score&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Credit Score&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis here)</p>
+<p><strong>Age</strong></p>
+<pre class="r"><code>summary(bank_churn_clean$Age)
+sd(bank_churn_clean$Age)
+
+ggplot(bank_churn_clean, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = &quot;#5F9EA0&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Customer Age&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Age&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
+<p>(analysis here)</p>
+<p><strong>Tenure</strong></p>
+<pre class="r"><code>summary(bank_churn_clean$Tenure)
+sd(bank_churn_clean$Tenure)
+
+ggplot(bank_churn_clean, aes(x = Tenure)) +
+  geom_histogram(binwidth = 5, fill = &quot;#48D&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Tenure&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Tenure&quot;, y = &quot;Count&quot;) +
+  theme_minimal()</code></pre>
+<p>(analysis here)</p>
+<p><strong>Balance</strong></p>
+<pre class="r"><code>library(scales)
+
+summary(bank_churn_clean$Balance)
+sd(bank_churn_clean$Balance)
+
+ggplot(bank_churn_clean, aes(x = Balance)) +
+  geom_histogram(binwidth = 10000, fill = &quot;#008080&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Customer Account Balance (in euros)&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Balance (€)&quot;, y = &quot;Count&quot;) +
+  scale_x_continuous(labels = comma) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Estimated Salary</strong></p>
+<pre class="r"><code>library(scales)
+
+summary(bank_churn_clean$EstimatedSalary)
+sd(bank_churn_clean$EstimatedSalary)
+
+ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
+  geom_histogram(binwidth = 10000, fill = &quot;lightblue&quot;, color = &quot;white&quot;) +
+  labs(title = &quot;Distribution of Customers&#39; Estimated Salaries (in euros)&quot;, subtitle = &quot;For customers at a European bank&quot;, x = &quot;Estimated Salary (€)&quot;, y = &quot;Count&quot;) +
+  scale_x_continuous(labels = comma) +
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
 
 
 
