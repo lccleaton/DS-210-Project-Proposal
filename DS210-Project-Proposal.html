@@ -357,6 +357,47 @@ display: none;
 </div>
 
 
+<p><strong>Section 1 - Introduction:</strong></p>
+<p>Customer retention is a critical concern in the banking industry,
+where competition and customer expectations are both high. Understanding
+why customers choose to leave a particular bank, or “churn”, can provide
+valuable insights for improving bank services and maintaining customer
+satisfaction.</p>
+<p>During my internship at Bank of America, I supported the Call
+Insights function in the Retail Transformation team, focusing on data
+analytics to enhance the client experience. I enjoyed identifying trends
+in customer call and complaint data to improve bank service efficiency.
+This project allows me to build on those skills by applying similar
+analytical techniques to a different dataset within the banking
+industry.</p>
+<p>The purpose of this project is to explore the factors that influence
+customer churn, with the goal of identifying patterns and relationships
+between customer characteristics and their decision to close their
+account. The dataset used in this study, titled “Bank Customer Churn,”
+is publicly available from Maven Analytics’ Data Playground (<a href="https://mavenanalytics.io/data-playground/bank-customer-churn?page=7&amp;pageSize=5" class="uri">https://mavenanalytics.io/data-playground/bank-customer-churn?page=7&amp;pageSize=5</a>),
+which sourced the data from Kaggle (<a href="https://www.kaggle.com/datasets/shubhammeshram579/bank-customer-churn-prediction/data" class="uri">https://www.kaggle.com/datasets/shubhammeshram579/bank-customer-churn-prediction/data</a>).
+While the specific bank is not identified, the dataset represents
+customer information from an unnamed European bank and contains 10,000
+observations.</p>
+<p>Each of the 10,000 observations represents a single customer and
+includes 13 variables capturing demographic, behavioral, and bank
+account information. Key variables include Geography (the customer’s
+country of residence: France, Germany, or Spain), Tenure (number of
+years as a customer with the bank), Balance and EstimatedSalary (both in
+euros, €), and IsActiveMember (whether the customer actively engages
+with the bank). The outcome variable, Exited, indicates whether or not
+the customer has closed their account with the bank.</p>
+<p>The data on each customer was collected from the bank’s internal
+records, which means that each row corresponds to one customer’s status
+at the time the data was collected. In this analysis, the variable
+Exited is the dependent variable representing customer churn, while the
+remaining variables serve as potential predictors of the decision to
+churn.</p>
+<p>By examining this dataset, the project aims to uncover trends and key
+factors that contribute to customer churn. These insights can inform
+strategies to improve customer retention and guide future efforts in
+customer relationship management.</p>
+<p><strong>Section 2 - Exploratory Data Analysis:</strong></p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre class="r"><code>bank_churn_data &lt;- read_csv(&quot;Bank_Churn.csv&quot;)
 View(bank_churn_data)</code></pre>
