@@ -472,7 +472,11 @@ ggplot(bank_churn_clean, aes(x = CreditScore)) +
   geom_histogram(binwidth = 25, fill = &quot;steelblue&quot;, color = &quot;white&quot;) +
   labs(title = &quot;Distribution of Credit Score&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Credit Score&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis here)</p>
+<p>The shape of the Credit Score distribution is fairly normal without
+any skew, so we can use the mean for the measure of center and standard
+deviation and range for the measures of spread. The distribution has a
+mean Credit Score of 650.5, a standard deviation of 96.6533, and a range
+of 500.</p>
 <p><strong>Age</strong></p>
 <pre class="r"><code>summary(bank_churn_clean$Age)
 sd(bank_churn_clean$Age)
@@ -481,7 +485,11 @@ ggplot(bank_churn_clean, aes(x = Age)) +
   geom_histogram(binwidth = 5, fill = &quot;#5F9EA0&quot;, color = &quot;white&quot;) +
   labs(title = &quot;Distribution of Age&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Age&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis here)</p>
+<p>The shape of the Customer Age distribution is slightly right skewed,
+so we will use the median for the measure of center and standard
+deviation and IQR for the measures of spread. The distribution has a
+median Age of 37 years, a standard deviation of 10.48781 years, and an
+IQR of 12 years.</p>
 <p><strong>Tenure</strong></p>
 <pre class="r"><code>summary(bank_churn_clean$Tenure)
 sd(bank_churn_clean$Tenure)
@@ -490,15 +498,22 @@ ggplot(bank_churn_clean, aes(x = Tenure)) +
   geom_histogram(binwidth = 1, fill = &quot;#B0E0E6&quot;, color = &quot;white&quot;) +
   labs(title = &quot;Distribution of Tenure&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Tenure&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis here)</p>
+<p>The shape of the Tenure distribution is fairly uniform, so we can use
+the median or the mean for the measure of center and standard deviation
+and range for the measures of spread. The distribution has a median
+Tenure of 5 years, a mean Tenure of 5.013 years, a standard deviation of
+2.892174 years, and an IQR of 4 years.</p>
 <p><strong>Number of Products</strong></p>
-<pre class="r"><code>summary(bank_churn_clean$NumOfProducts)
+<pre class="r"><code>table(bank_churn_clean$NumOfProducts)
 sd(bank_churn_clean$NumOfProducts)
 
 ggplot(bank_churn_clean, aes(x = NumOfProducts)) +
   geom_histogram(binwidth = 1, fill = &quot;#4682B4&quot;, color = &quot;white&quot;) +
   labs(title = &quot;Distribution of Number of Products&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Number of Products&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
+<p>5,084 customers own 1 product, 4,590 customers own 2 products, 266
+customers own 3 products, and 60 customers own 4 products from the
+European bank. The majority of customers own 1 product.</p>
 <p><strong>Account Balance</strong></p>
 <pre class="r"><code>library(scales)
 
@@ -510,7 +525,14 @@ ggplot(bank_churn_clean, aes(x = Balance)) +
   labs(title = &quot;Distribution of Account Balance (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Balance (€)&quot;, y = &quot;Count&quot;) +
   scale_x_continuous(labels = comma) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>The distribution is fairly normal, except for the very large and
+outlier of customers having a $0 balance in their bank accounts. I think
+that this reflects those who have closed their account, and thus do not
+have any money still in their closed accounts. Due to this large left
+skew, we will use the median for the measure of center and standard
+deviation and IQR for the measures of spread. The distribution has a
+median Account Balance of 97,199 euros, a standard deviation of
+62,397.41 euros, and an IQR of 127,644 euros.</p>
 <p><strong>Estimated Salary</strong></p>
 <pre class="r"><code>library(scales)
 
@@ -522,7 +544,12 @@ ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
   labs(title = &quot;Distribution of Estimated Salary (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Estimated Salary (€)&quot;, y = &quot;Count&quot;) +
   scale_x_continuous(labels = comma) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>The shape of the Estimated Salary distribution is fairly uniform, so
+we can use the median or the mean for the measure of center and standard
+deviation and range for the measures of spread. The distribution has a
+median Estimated Salary of 100,193.91 euros, a mean Estimated Salary of
+100,090.24 euros, a standard deviation of 57,510.49 euros, and an IQR of
+98,386.14 euros.</p>
 <p><strong>Country of Residence</strong></p>
 <pre class="r"><code>table(bank_churn_clean$Geography)
 
@@ -530,7 +557,9 @@ ggplot(bank_churn_clean, aes(x = Geography)) +
   geom_bar(fill = &quot;steelblue&quot;) +
   labs(title = &quot;Distribution of Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Country&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>5,014 customers reside in France, 2,509 customers reside in Germany,
+and 2,477 customers reside in Spain. The majority of customers reside in
+France.</p>
 <p><strong>Gender</strong></p>
 <pre class="r"><code>table(bank_churn_clean$Gender)
 
@@ -538,7 +567,8 @@ ggplot(bank_churn_clean, aes(x = Gender)) +
   geom_bar(fill = &quot;#5F9EA0&quot;) +
   labs(title = &quot;Number of Customers by Gender&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Gender&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>4,543 customers are female and 5,457 customers are male. The majority
+of the customers of the European bank are male.</p>
 <p><strong>Credit Card Ownership</strong></p>
 <pre class="r"><code>table(bank_churn_clean$HasCrCard)
 
@@ -546,7 +576,8 @@ ggplot(bank_churn_clean, aes(x = HasCrCard)) +
   geom_bar(fill = &quot;#B0E0E6&quot;) +
   labs(title = &quot;Credit Card Ownership&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Owns a Credit Card&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>2,945 customers do not own a credit card, and 7,055 custoemrs do own
+a credit card. The majority of customers own a credit card.</p>
 <p><strong>Active Bank Membership Status</strong></p>
 <pre class="r"><code>table(bank_churn_clean$IsActiveMember)
 
@@ -554,7 +585,9 @@ ggplot(bank_churn_clean, aes(x = IsActiveMember)) +
   geom_bar(fill = &quot;#4682B4&quot;) +
   labs(title = &quot;Active Bank Membership Status&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Is Active Member of Bank&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>4,849 of the customers are not active members of the bank, whereas
+5,151 customers are active. This makes me wonder if about half of the
+customers have left the bank.</p>
 <p><strong>Customer Churn</strong></p>
 <pre class="r"><code>table(bank_churn_clean$Exited)
 
@@ -562,7 +595,9 @@ ggplot(bank_churn_clean, aes(x = Exited)) +
   geom_bar(fill = &quot;#008080&quot;) +
   labs(title = &quot;Customer Churn&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Exited&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>Surprisingly, despite almost half of the customers not being active
+in the bank, only 2,037 customers have churned. 7,963 customers have not
+left the bank.</p>
 <p><strong><em>Step 5: Two Variable Comparisons and
 Visualizations</em></strong></p>
 <p><strong>Churn Status by Credit Score</strong></p>
@@ -571,66 +606,168 @@ Visualizations</em></strong></p>
   geom_boxplot(fill = &quot;#5F9EA0&quot;) +
   labs(title = &quot;Churn Status by Credit Score&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Credit Score&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>Credit Score does not appear to have a significant impact on whether
+a customer left the bank or not. The boxplots have similar medians and
+spreads.</p>
 <p><strong>Churn Status by Age</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(Age), y = factor(Exited))) +
   geom_violin(fill = &quot;lightblue&quot;, alpha = 0.6) +
   geom_boxplot(fill = &quot;steelblue&quot;) +
   labs(title = &quot;Churn Status by Age&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Age&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
+<p>Of those who left the bank, the median age appears to be about 43
+years old. The distribution of the age of those who left the bank
+appears to be slightly right skewed. I want to explore the
+characteristics of those of an older age, and see if I can uncover any
+trends.</p>
 <p><strong>Churn Status by Tenure</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(Tenure), y = factor(Exited))) +
   geom_boxplot(fill = &quot;#008080&quot;) +
   labs(title = &quot;Churn Status by Tenure&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Tenure&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>Those who exited the bank have a larger spread of tenure than those
+who did not. It is quite interesting, but does not help to uncover why
+people left the bank.</p>
 <p><strong>Churn Status by Number of Products</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = factor(NumOfProducts), fill = Exited)) +
          geom_bar(position = &quot;fill&quot;) +
   labs(title = &quot;Churn Status by Number of Products&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Number of Products&quot;, y = &quot;Proportion of Customers&quot;) +
   scale_fill_manual(values = c(&quot;lightblue&quot;, &quot;#5F9EA0&quot;), name = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
+<p>Although only 60 people had 4 products in the bank, it is fascinating
+that 100% of those 60 customers left the bank. Over 75% of those that
+owned 3 products also left the bank. I want to explore data with just
+those two variables.</p>
 <p><strong>Churn Status by Account Balance</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(Balance), y = factor(Exited))) +
   geom_violin(fill = &quot;lightblue&quot;, alpha = 0.6) +
   geom_boxplot(fill = &quot;#4682B4&quot;) +
   labs(title = &quot;Churn Status by Balance (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Balance (€)&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>A higher Account Balance median occurs for those who left the bank
+than for those who did not. I want to see why this is the case, and if
+it relates to the Age or Number of Products results.</p>
 <p><strong>Churn Status by Estimated Salary</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(EstimatedSalary), y = factor(Exited))) +
   geom_violin(fill = &quot;lightblue&quot;, alpha = 0.6) +
   geom_boxplot(fill = &quot;#4682B4&quot;) +
   labs(title = &quot;Churn Status by Estimated Salary (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Estimated Salary (€)&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
+<p>Estimated Salary does not appear to have a significant impact on
+whether a customer left the bank or not. The boxplots have similar
+medians and spreads.</p>
 <p><strong>Churn Status by Country of Residence</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = Geography, fill = Exited)) +
   geom_bar(position = &quot;fill&quot;) +
   labs(title = &quot;Churn Status by Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Country&quot;, y = &quot;Proportion&quot;) +
-  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  scale_fill_manual(values = c(&quot;lightblue&quot;, &quot;#5F9EA0&quot;), name = &quot;Exited&quot;)
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>Although the majority of customers reside in France, the highest
+proportion of those who left the bank, at over 0.25, resided in
+Germany.</p>
 <p><strong>Churn Status by Gender</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = Gender, fill = Exited)) +
   geom_bar(position = &quot;fill&quot;) +
   labs(title = &quot;Churn Status by Gender&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Gender&quot;, y = &quot;Proportion&quot;) +
-  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  scale_fill_manual(values = c(&quot;lightblue&quot;, &quot;#5F9EA0&quot;), name = &quot;Exited&quot;)
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>More female customers have left the bank than male customers, though
+it is by about 10%.</p>
 <p><strong>Churn Status by Credit Card Ownership</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = HasCrCard, fill = Exited)) +
   geom_bar(position = &quot;fill&quot;) +
   labs(title = &quot;Churn Status by Credit Card Ownership&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Owns a Credit Card&quot;, y = &quot;Proportion&quot;) +
-  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  scale_fill_manual(values = c(&quot;lightblue&quot;, &quot;#5F9EA0&quot;), name = &quot;Exited&quot;)
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>Whether a customer owned a credit card or not does not appear to have
+a significant impact on whether a customer left the bank or not. The
+proportions are almost equivalent.</p>
 <p><strong>Churn Status by Active Bank Membership Status</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = IsActiveMember, fill = Exited)) +
   geom_bar(position = &quot;fill&quot;) +
-  labs(title = &quot;Churn Status by Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Is Active Member of Bank&quot;, y = &quot;Proportion&quot;) +
-  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  labs(title = &quot;Churn Status by Active Bank Membership Status&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Is Active Member of Bank&quot;, y = &quot;Proportion&quot;) +
+  scale_fill_manual(values = c(&quot;lightblue&quot;, &quot;#5F9EA0&quot;), name = &quot;Exited&quot;)
   theme_minimal()</code></pre>
-<p>(analysis)</p>
+<p>I would have expected a higher proportion of those who exited the
+bank to no longer be an active member of the bank. However, it does make
+sense that a higher proportion of those who churned would no longer be
+active.</p>
+<p><strong><em>Step 5: Multivariable Visualizations and
+Analysis</em></strong></p>
+<p><strong>Age vs. Balance by Exited</strong></p>
+<pre class="r"><code>bank_churn_clean &lt;- bank_churn_clean %&gt;%
+  mutate(AgeGroup = case_when(
+    Age &lt; 30 ~ &quot;&lt;30&quot;,
+    Age &gt;= 30 &amp; Age &lt; 40 ~ &quot;30–39&quot;,
+    Age &gt;= 40 &amp; Age &lt; 50 ~ &quot;40–49&quot;,
+    Age &gt;= 50 &amp; Age &lt; 60 ~ &quot;50–59&quot;,
+    TRUE ~ &quot;60+&quot;
+  ))
+
+ggplot(bank_churn_clean, aes(x = Balance, y = AgeGroup, fill = Exited)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  labs(
+    title = &quot;Account Balance by Age Group and Churn Status&quot;,
+    subtitle = &quot;For Customers of a European Bank&quot;,
+    x = &quot;Balance (€)&quot;,
+    y = &quot;Age Group&quot;,
+    fill = &quot;Exited&quot;
+  ) +
+  scale_x_continuous(labels = scales::comma) +
+  scale_fill_manual(values = c(&quot;No&quot; = &quot;lightblue&quot;, &quot;Yes&quot; = &quot;#5F9EA0&quot;)) +
+  theme_minimal()</code></pre>
+<p>I wanted to see the relationship between age groups and the amount of
+money they have in their bank accounts, and whether that influenced bank
+churns. It is interesting that there is a similar theme across</p>
+<p><strong>Customer Churn by Number of Products and Country of
+Residence</strong></p>
+<pre class="r"><code>ggplot(bank_churn_clean,aes(x = factor(NumOfProducts), fill = Exited)) +
+  geom_bar(position = &quot;fill&quot;) +
+  scale_fill_manual(values = c(&quot;No&quot; = &quot;lightblue&quot;, &quot;Yes&quot; = &quot;#5F9EA0&quot;)) +
+  facet_wrap(~ Geography) +
+  labs(
+    title = &quot;Customer Churn by Number of Products and Country of Residence&quot;,
+    subtitle = &quot;For Customers of a European Bank&quot;,
+    x = &quot;Number of Products&quot;,
+    y = &quot;Proportion of Customers&quot;,
+    fill = &quot;Exited&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p>As I suspected, a higher proportion of those residing in Germany
+exited the bank when they had 1, 2, and 3 products than in any of the
+other two countries. All countries obviously had 100% of customers with
+4 products leave the bank.</p>
+<p><strong>Average Balance by Age for Customers with 3 or 4
+Products</strong></p>
+<pre class="r"><code>bank_churn_clean %&gt;%
+  filter(Exited == &quot;Yes&quot;) %&gt;%
+  mutate(AgeGroup = cut(Age, breaks = seq(20, 80, by = 5))) %&gt;%  # 5-year bins
+  group_by(AgeGroup, NumOfProducts) %&gt;%
+  summarise(avg_balance = mean(Balance, na.rm = TRUE), .groups = &quot;drop&quot;) %&gt;%
+  ggplot(aes(x = AgeGroup, y = avg_balance, color = factor(NumOfProducts), group = NumOfProducts)) +
+  geom_line(linewidth = 1.2) +
+  geom_point() +
+  scale_y_continuous(labels = comma) +
+ scale_color_manual(
+    values = c(&quot;#5F9EA0&quot;, &quot;#4682B4&quot;, &quot;lightblue&quot;, &quot;#008080&quot;),
+    name = &quot;Number of Products&quot;
+  ) +
+  labs(
+    title = &quot;Average Balance by Age Group and Number of Products&quot;,
+    subtitle = &quot;For Churned Customers of a European Bank&quot;,
+    x = &quot;AgeGroup&quot;,
+    y = &quot;Average Balance (€)&quot;
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5))</code></pre>
+<p>An interesting trend that we can see is that the most of customers
+who reached 70 years old did not leave the bank, except for those who
+owned 3 products. I wish I knew which products resulted in people
+leaving, as perhaps the technology of the 3rd product was too advanced
+for many customers, especially those of an older age. Perhaps an online
+banking product with an AI component. But of what we know, we can see
+the largest spike in people leaving the bank when they own three
+products and are above the age of 65-70.</p>
 
 
 
