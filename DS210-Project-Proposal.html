@@ -528,7 +528,7 @@ ggplot(bank_churn_clean, aes(x = EstimatedSalary)) +
 
 ggplot(bank_churn_clean, aes(x = Geography)) +
   geom_bar(fill = &quot;steelblue&quot;) +
-  labs(title = &quot;Distribution of Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Country of Residence&quot;, y = &quot;Count&quot;) +
+  labs(title = &quot;Distribution of Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Country&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis)</p>
 <p><strong>Gender</strong></p>
@@ -563,7 +563,7 @@ ggplot(bank_churn_clean, aes(x = Exited)) +
   labs(title = &quot;Customer Churn&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Exited&quot;, y = &quot;Count&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis)</p>
-<p><strong><em>Step 5: Multivariable Comparisons and
+<p><strong><em>Step 5: Two Variable Comparisons and
 Visualizations</em></strong></p>
 <p><strong>Churn Status by Credit Score</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(CreditScore), y = factor(Exited))) +
@@ -580,16 +580,15 @@ Visualizations</em></strong></p>
   theme_minimal()</code></pre>
 <p><strong>Churn Status by Tenure</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(Tenure), y = factor(Exited))) +
-  geom_violin(fill = &quot;#B0E0E6&quot;, alpha = 0.6) +
   geom_boxplot(fill = &quot;#008080&quot;) +
   labs(title = &quot;Churn Status by Tenure&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Tenure&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
 <p>(analysis)</p>
 <p><strong>Churn Status by Number of Products</strong></p>
-<pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(NumOfProducts), y = factor(Exited))) +
-  geom_violin(fill = &quot;lightblue&quot;, alpha = 0.6) +
-  geom_boxplot(fill = &quot;#4682B4&quot;) +
-  labs(title = &quot;Churn Status by Number of Products&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Number of Products&quot;, y = &quot;Exited&quot;) +
+<pre class="r"><code>ggplot(bank_churn_clean, aes(x = factor(NumOfProducts), fill = Exited)) +
+         geom_bar(position = &quot;fill&quot;) +
+  labs(title = &quot;Churn Status by Number of Products&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Number of Products&quot;, y = &quot;Proportion of Customers&quot;) +
+  scale_fill_manual(values = c(&quot;lightblue&quot;, &quot;#5F9EA0&quot;), name = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
 <p><strong>Churn Status by Account Balance</strong></p>
 <pre class="r"><code>ggplot(bank_churn_clean, aes(x = as.numeric(Balance), y = factor(Exited))) +
@@ -605,12 +604,33 @@ Visualizations</em></strong></p>
   labs(title = &quot;Churn Status by Estimated Salary (in euros)&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Estimated Salary (€)&quot;, y = &quot;Exited&quot;) +
   theme_minimal()</code></pre>
 <p><strong>Churn Status by Country of Residence</strong></p>
-<pre class="r"><code>library(scales)
-ggplot(bank_churn_clean, aes(x = Geography, fill = Exited)) +
+<pre class="r"><code>ggplot(bank_churn_clean, aes(x = Geography, fill = Exited)) +
   geom_bar(position = &quot;fill&quot;) +
   labs(title = &quot;Churn Status by Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Country&quot;, y = &quot;Proportion&quot;) +
-  scale_y_continuous(labels = percent) +
+  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
   theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Churn Status by Gender</strong></p>
+<pre class="r"><code>ggplot(bank_churn_clean, aes(x = Gender, fill = Exited)) +
+  geom_bar(position = &quot;fill&quot;) +
+  labs(title = &quot;Churn Status by Gender&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Gender&quot;, y = &quot;Proportion&quot;) +
+  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Churn Status by Credit Card Ownership</strong></p>
+<pre class="r"><code>ggplot(bank_churn_clean, aes(x = HasCrCard, fill = Exited)) +
+  geom_bar(position = &quot;fill&quot;) +
+  labs(title = &quot;Churn Status by Credit Card Ownership&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Owns a Credit Card&quot;, y = &quot;Proportion&quot;) +
+  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
+<p><strong>Churn Status by Active Bank Membership Status</strong></p>
+<pre class="r"><code>ggplot(bank_churn_clean, aes(x = IsActiveMember, fill = Exited)) +
+  geom_bar(position = &quot;fill&quot;) +
+  labs(title = &quot;Churn Status by Country of Residence&quot;, subtitle = &quot;For Customers of a European Bank&quot;, x = &quot;Is Active Member of Bank&quot;, y = &quot;Proportion&quot;) +
+  scale_fill_manual(values = c(&quot;#5F9EA0&quot;, &quot;lightblue&quot;), name = &quot;Exited&quot;)
+  theme_minimal()</code></pre>
+<p>(analysis)</p>
 
 
 
